@@ -14,6 +14,10 @@ const alias = utils.createAlias(pathConfig.src)
 
 module.exports = {
   path: {},
+  dev: {
+    preentry: ['global'],
+    staticPath: path.resolve(root, './static')
+  },
   conf: {
     entry: entry,
     alias: alias,
