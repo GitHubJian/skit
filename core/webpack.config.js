@@ -11,14 +11,13 @@ const [isProduction] = [NODE_ENV === 'production']
 const path = require('path')
 
 const { rules } = require('./rules')
-const { htmlIncludeAssets } = require('./htmlIncludeAssets.js')
 const extractCSS = require('./extract.js')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const AssetsWebpackPlugin = require('assets-webpack-plugin')
-const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+const HtmlIncludeAssetInstance = require('./htmlAssetsInstance.js')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
@@ -119,12 +118,7 @@ webpackConfig.plugins.push(
       dry: false
     }),
     ...HtmlWebpackPluginList,
-    new HtmlWebpackIncludeAssetsPlugin({
-      append: false,
-      resolvePaths: true,
-      publicPath: './',
-      assets: htmlIncludeAssets
-    })
+    HtmlIncludeAssetInstance
   ]
 )
 

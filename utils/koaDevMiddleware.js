@@ -20,6 +20,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const { hotMiddleware } = require('koa-webpack-middleware')
+const HtmlAssetsInstance = require('../core/htmlAssetsInstance.js')
 
 const { htmlIncludeAssets } = require('./../core/htmlIncludeAssets.js')
 
@@ -50,13 +51,13 @@ module.exports = app => {
   let { preentry = [] } = devOptions
   let globalEntry = preentry.length
     ? preentry.reduce((prev, cur) => {
-      prev[cur] = [createHMR(cur), webpackConfigEntry[cur]]
+        prev[cur] = [createHMR(cur), webpackConfigEntry[cur]]
 
-      return prev
-    }, {})
+        return prev
+      }, {})
     : {
-      global: [createHMR('global')]
-    }
+        global: [createHMR('global')]
+      }
 
   webpackConfig.entry = globalEntry
 
@@ -83,12 +84,7 @@ module.exports = app => {
             new MultiEntryPlugin(pathConfig.root, entryValue, entry)
           )
           compiler.apply(getSingleHtmlPlugin(entry))
-          compiler.apply(
-            new HtmlWebpackIncludeAssetsPlugin({
-              append: false,
-              assets: htmlIncludeAssets
-            })
-          )
+          compiler.apply(HtmlAssetsInstance)
           devMiddlewareInstance.invalidate()
           htmlCache[entry] = true
           await next()

@@ -1,4 +1,6 @@
-const { path: pathConfig } = require('./../config.js')
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+
+const { path: pathConfig } = require('../config.js')
 const { existsSync } = require('fs')
 
 let htmlIncludeAssets = []
@@ -21,4 +23,11 @@ if (existsSync(`${pathConfig.dll}/index.json`)) {
     }, [])
 }
 
-module.exports = { htmlIncludeAssets }
+let htmlIncludeAssertsInstance = new HtmlWebpackIncludeAssetsPlugin({
+  append: false,
+  resolvePaths: true,
+  publicPath: './',
+  assets: htmlIncludeAssets
+})
+
+module.exports = htmlIncludeAssertsInstance
