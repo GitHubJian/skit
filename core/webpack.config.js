@@ -24,6 +24,7 @@ const AssetsWebpackPlugin = require('assets-webpack-plugin')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
   let { title, chunks, favicon } = htmlOptions
@@ -84,6 +85,14 @@ const webpackConfig = {
       path: pathConfig.dll,
       filename: 'index.json',
       prettyPrint: true
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css\.*(?!.*map)/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }]
+      },
+      canPrint: true
     })
   ],
   optimization: {

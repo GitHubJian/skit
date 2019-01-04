@@ -46,34 +46,28 @@ const rules4Prod = [
               use: [
                 {
                   loader: 'css-loader',
-                  options: {
-                    minimize: true
-                  }
+                  options: {}
                 }
               ]
             }),
             sass: extractCSS.extract({
               fallback: 'vue-style-loader',
               use: [
-                'sass-loader',
                 {
                   loader: 'css-loader',
-                  options: {
-                    minimize: true
-                  }
-                }
+                  options: {}
+                },
+                'sass-loader'
               ]
             }),
             scss: extractCSS.extract({
               fallback: 'vue-style-loader',
               use: [
-                'sass-loader',
                 {
                   loader: 'css-loader',
-                  options: {
-                    minimize: true
-                  }
-                }
+                  options: {}
+                },
+                'sass-loader'
               ]
             }),
             js: {
@@ -94,9 +88,7 @@ const rules4Prod = [
       use: [
         {
           loader: 'css-loader',
-          options: {
-            minimize: true
-          }
+          options: {}
         }
       ]
     })
@@ -108,9 +100,7 @@ const rules4Prod = [
       use: [
         {
           loader: 'css-loader',
-          options: {
-            minimize: true
-          }
+          options: {}
         },
         'sass-loader'
       ]
@@ -123,9 +113,7 @@ const rules4Prod = [
       use: [
         {
           loader: 'css-loader',
-          options: {
-            minimize: true // css压缩
-          }
+          options: {}
         },
         'sass-loader'
       ]
