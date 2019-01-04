@@ -1,6 +1,6 @@
 {
   "name": "skitpack",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Webpack-based packaging tools for Vue",
   "bin": {
     "skitpack": "./bin/index.js"
@@ -25,7 +25,9 @@
     "@babel/preset-env": "^7.2.3",
     "assets-webpack-plugin": "^3.9.7",
     "babel-loader": "^8.0.4",
+    "chalk": "^2.4.1",
     "clean-webpack-plugin": "^1.0.0",
+    "cliui": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",

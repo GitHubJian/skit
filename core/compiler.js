@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const { print } = require('./stats')
 
 const cb = () => {}
 
@@ -12,7 +13,7 @@ module.exports = (config, callback = cb) => {
         console.log(err)
         rej(err)
       } else {
-        console.log(stats)
+        print(stats)
         res()
       }
     })
