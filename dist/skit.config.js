@@ -25,7 +25,8 @@ module.exports = {
       title: 'Sogou Test',
       favicon: path.resolve(root, './favicon.ico'),
       chunks: ['vendor']
-    }
+    },
+    publicPath: './'
   },
   dll: {
     entry: {

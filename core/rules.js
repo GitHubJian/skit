@@ -1,10 +1,7 @@
 const extractCSS = require('./extract.js')
 
 const { NODE_ENV } = process.env
-const [isDevelopment, isProduction] = [
-  NODE_ENV === 'development',
-  NODE_ENV === 'production'
-]
+const [isProduction] = [NODE_ENV === 'production']
 
 const rules = [
   {
@@ -158,5 +155,5 @@ const rules4Dev = [
 ].concat(rules)
 
 module.exports = {
-  rules: isDevelopment ? rules4Dev : rules4Prod
+  rules: !isProduction ? rules4Dev : rules4Prod
 }

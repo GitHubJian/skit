@@ -50,13 +50,13 @@ module.exports = app => {
   let { preentry = [] } = devOptions
   let globalEntry = preentry.length
     ? preentry.reduce((prev, cur) => {
-        prev[cur] = [createHMR(cur), webpackConfigEntry[cur]]
+      prev[cur] = [createHMR(cur), webpackConfigEntry[cur]]
 
-        return prev
-      }, {})
+      return prev
+    }, {})
     : {
-        global: [createHMR('global')]
-      }
+      global: [createHMR('global')]
+    }
 
   webpackConfig.entry = globalEntry
 

@@ -8,10 +8,7 @@ const {
 /* ---------------------------------------- */
 
 const { NODE_ENV } = process.env || 'development'
-const [isDevelopment, isProduction] = [
-  NODE_ENV === 'development',
-  NODE_ENV === 'production'
-]
+const [isProduction] = [NODE_ENV === 'production']
 const path = require('path')
 const webpack = require('webpack')
 const extractCSS = require('./extract.js')

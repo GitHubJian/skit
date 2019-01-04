@@ -2,7 +2,7 @@ const root = process.cwd()
 const path = require('path')
 const fse = require('fs-extra')
 
-function createConfig() {
+function createConfig () {
   let content = fse.readFileSync(
     path.resolve(__dirname, './skit.config.js'),
     'utf-8'

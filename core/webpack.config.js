@@ -1,14 +1,11 @@
 const { path: pathConfig } = require('./../config.js')
 const {
-  conf: { entry, alias, html: htmlOptions }
+  conf: { entry, alias, html: htmlOptions, publicPath }
 } = require(pathConfig.configPath)
 
 /* ---------------------------------------- */
 const { NODE_ENV } = process.env || 'development'
-const [isDevelopment, isProduction] = [
-  NODE_ENV === 'development',
-  NODE_ENV === 'production'
-]
+const [isProduction] = [NODE_ENV === 'production']
 /* ---------------------------------------- */
 
 const path = require('path')
@@ -21,7 +18,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const AssetsWebpackPlugin = require('assets-webpack-plugin')
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -47,7 +43,7 @@ const webpackConfig = {
   output: {
     filename: 'js/[name].js',
     path: pathConfig.dist,
-    publicPath: '/',
+    publicPath: publicPath || '/',
     chunkFilename: 'js/[name].js'
   },
   resolve: {

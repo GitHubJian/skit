@@ -1,14 +1,14 @@
 const { path: pathConfig } = require('./../config.js')
 const {
-  conf: { entry, alias, html: htmlOptions }
+  conf: { entry, alias }
 } = require(pathConfig.configPath)
 
 /* ---------------------------------------- */
-const { NODE_ENV } = process.env || 'development'
-const [isDevelopment, isProduction] = [
-  NODE_ENV === 'development',
-  NODE_ENV === 'production'
-]
+// const { NODE_ENV } = process.env || 'development'
+// const [isDevelopment, isProduction] = [
+//   NODE_ENV === 'development',
+//   NODE_ENV === 'production'
+// ]
 /* ---------------------------------------- */
 
 const webpack = require('webpack')
@@ -106,7 +106,7 @@ const webpackConfig = {
     new webpack.NamedModulesPlugin(),
     new webpack.ProvidePlugin({}),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin()
     // new HtmlWebpackIncludeAssetsPlugin({
     //   append: false,
     //   assets: htmlAssets
