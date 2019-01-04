@@ -1,6 +1,6 @@
 const { path: pathConfig } = require('./../config.js')
 const {
-  conf: { entry, entryExtra = {}, alias, html: htmlOptions, publicPath }
+  conf: { target, entry, entryExtra = {}, alias, html: htmlOptions, publicPath }
 } = require(pathConfig.configPath)
 
 /* ---------------------------------------- */
@@ -38,6 +38,7 @@ const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
 })
 
 const webpackConfig = {
+  target: target || 'web',
   mode: isProduction ? 'production' : 'development',
   entry: Object.assign({}, entryExtra, entry),
   output: {

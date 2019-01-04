@@ -19,6 +19,7 @@ module.exports = {
     staticPath: path.resolve(root, './static')
   },
   conf: {
+    target: 'web',
     entryExtra: {},
     entry: entry,
     alias: alias,
