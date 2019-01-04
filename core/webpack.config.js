@@ -1,6 +1,6 @@
 const { path: pathConfig } = require('./../config.js')
 const {
-  conf: { entry, alias, html: htmlOptions, publicPath }
+  conf: { entry, entryExtra = {}, alias, html: htmlOptions, publicPath }
 } = require(pathConfig.configPath)
 
 /* ---------------------------------------- */
@@ -25,7 +25,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
   let { title, chunks, favicon } = htmlOptions
   let chunksArr = Array.isArray(chunks) ? chunks.concat([k]) : [k]
-  
+
   return new HtmlWebpackPlugin({
     filename: path.resolve(pathConfig.dist, `${k}.html`),
     template: pathConfig.template,
@@ -39,7 +39,7 @@ const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
 
 const webpackConfig = {
   mode: isProduction ? 'production' : 'development',
-  entry,
+  entry: Object.assign({}, entryExtra, entry),
   output: {
     filename: 'js/[name].js',
     path: pathConfig.dist,
