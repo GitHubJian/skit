@@ -19,8 +19,8 @@ commander
 
 if (commander.build) {
   try {
-    const compiler = require('./compiler')
-    const { webpackConfig } = require('./webpack.config.js')
+    const compiler = require('./../core/compiler.js')
+    const { webpackConfig } = require('./../core/webpack.config.js')
 
     const build = async () => {
       await compiler(webpackConfig)
@@ -34,8 +34,8 @@ if (commander.build) {
 
 if (commander.dll) {
   try {
-    const compiler = require('./compiler')
-    const { webpackConfig } = require('./webpack.dll.config.js')
+    const compiler = require('./../core/compiler')
+    const { webpackConfig } = require('./../core/webpack.dll.config.js')
 
     const build = async () => {
       await compiler(webpackConfig)

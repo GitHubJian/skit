@@ -1,7 +1,7 @@
 {
   "name": "skitpack",
-  "version": "1.0.0",
-  "description": "Webpack-based packaging tools",
+  "version": "1.0.1",
+  "description": "Webpack-based packaging tools for Vue",
   "bin": {
     "skitpack": "./bin/index.js"
   },
@@ -19,5 +19,32 @@
   "bugs": {
     "url": "https://github.com/GitHubJian/skitpack/issues"
   },
-  "homepage": "https://github.com/GitHubJian/skitpack#readme"
+  "homepage": "https://github.com/GitHubJian/skitpack#readme",
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "assets-webpack-plugin": "^3.9.7",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "electron": "^4.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "fs-extra": "^7.0.1",
+    "html-webpack-include-assets-plugin": "^1.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "vue": "^2.5.21",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.21",
+    "webpack": "^4.28.3",
+    "webpack-parallel-uglify-plugin": "^1.1.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.2.0"
+  }
 }

@@ -12,7 +12,7 @@ let pathConfig = {
   nodeModules: path.resolve(root, './node_modules'), //
   favicon: path.resolve(root, './favicon.ico'), //
   configPath: path.resolve(root, './skit.config.js'),
-  template: path.resolve(root, './webpack/core/template.ejs')
+  template: path.resolve(__dirname, './core/template.ejs')
 }
 
 Object.assign(pathConfig, settings.path || {})

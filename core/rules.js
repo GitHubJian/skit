@@ -43,11 +43,38 @@ const rules4Prod = [
           loaders: {
             css: extractCSS.extract({
               fallback: 'vue-style-loader',
-              use: ['css-loader']
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    minimize: true
+                  }
+                }
+              ]
             }),
             sass: extractCSS.extract({
               fallback: 'vue-style-loader',
-              use: ['sass-loader', 'css-loader']
+              use: [
+                'sass-loader',
+                {
+                  loader: 'css-loader',
+                  options: {
+                    minimize: true
+                  }
+                }
+              ]
+            }),
+            scss: extractCSS.extract({
+              fallback: 'vue-style-loader',
+              use: [
+                'sass-loader',
+                {
+                  loader: 'css-loader',
+                  options: {
+                    minimize: true
+                  }
+                }
+              ]
             }),
             js: {
               loader: 'babel-loader',
@@ -67,7 +94,9 @@ const rules4Prod = [
       use: [
         {
           loader: 'css-loader',
-          options: {}
+          options: {
+            minimize: true
+          }
         }
       ]
     })
@@ -76,7 +105,30 @@ const rules4Prod = [
     test: /\.scss$/,
     use: extractCSS.extract({
       fallback: 'style-loader',
-      use: ['css-loader', 'sass-loader']
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: true
+          }
+        },
+        'sass-loader'
+      ]
+    })
+  },
+  {
+    test: /\.sass$/,
+    use: extractCSS.extract({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: true // css压缩
+          }
+        },
+        'sass-loader'
+      ]
     })
   }
 ].concat(rules)
@@ -84,7 +136,24 @@ const rules4Prod = [
 const rules4Dev = [
   {
     test: /\.vue$/,
-    use: 'vue-loader'
+    use: [
+      {
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            css: ['vue-style-loader', 'css-loader'],
+            scss: ['vue-style-loader', 'css-loader', 'sass-loader'],
+            sass: ['vue-style-loader', 'css-loader', 'sass-loader'],
+            js: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        }
+      }
+    ]
   },
   {
     test: /\.css$/,
@@ -92,6 +161,10 @@ const rules4Dev = [
   },
   {
     test: /\.scss$/,
+    use: ['vue-style-loader', 'css-loader', 'sass-loader']
+  },
+  {
+    test: /\.sass$/,
     use: ['vue-style-loader', 'css-loader', 'sass-loader']
   }
 ].concat(rules)
