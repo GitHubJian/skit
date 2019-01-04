@@ -43,7 +43,7 @@ const webpackConfig = {
   output: {
     filename: 'js/[name].js',
     path: pathConfig.dist,
-    publicPath: '/',
+    publicPath: publicPath || '/',
     chunkFilename: 'js/[name].js'
   },
   resolve: {

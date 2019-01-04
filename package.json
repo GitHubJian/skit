@@ -1,6 +1,6 @@
 {
   "name": "skitpack",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Webpack-based packaging tools for Vue",
   "bin": {
     "skitpack": "./bin/index.js"
