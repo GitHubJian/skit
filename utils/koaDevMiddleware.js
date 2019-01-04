@@ -24,8 +24,10 @@ const { hotMiddleware } = require('koa-webpack-middleware')
 
 const createHtmlAssetsInstance = require('../core/htmlAssetsInstance.js')
 
-const HtmlAssetsInstance = createHtmlAssetsInstance({resolvePaths:false})
-
+const HtmlAssetsInstance = createHtmlAssetsInstance({
+  resolvePaths: false,
+  publicPath: '/'
+})
 
 const KoaSend = require('koa-send')
 const fse = require('fs-extra')
@@ -110,7 +112,7 @@ module.exports = app => {
     if (reqPath === '/__webpack_hmr') {
       await next()
     } else {
-      debugger;
+      debugger
       let maxage = 365 * 24 * 60 * 60 * 1000
       const exists = await fse.pathExists(`${devOptions.staticPath}${reqPath}`)
       let result
