@@ -1,0 +1,23 @@
+{
+  "name": "skitpack",
+  "version": "1.0.0",
+  "description": "Webpack-based packaging tools",
+  "bin": {
+    "skitpack": "./bin/index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitHubJian/skitpack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GitHubJian/skitpack/issues"
+  },
+  "homepage": "https://github.com/GitHubJian/skitpack#readme"
+}
