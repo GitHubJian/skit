@@ -23,11 +23,18 @@ if (existsSync(`${pathConfig.dll}/index.json`)) {
     }, [])
 }
 
-let htmlIncludeAssertsInstance = new HtmlWebpackIncludeAssetsPlugin({
-  append: false,
-  resolvePaths: true,
-  publicPath: './',
-  assets: htmlIncludeAssets
-})
+function createHtmlAssetsInstance(opts = {}) {
+  return new HtmlWebpackIncludeAssetsPlugin(
+    Object.assign(
+      {
+        append: false,
+        resolvePaths: true,
+        publicPath: './',
+        assets: htmlIncludeAssets
+      },
+      opts
+    )
+  )
+}
 
-module.exports = htmlIncludeAssertsInstance
+module.exports = createHtmlAssetsInstance

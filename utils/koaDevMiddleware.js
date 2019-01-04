@@ -1,6 +1,7 @@
 const { path: pathConfig } = require('./../config.js')
 const {
-  conf: { alias, html: htmlOptions, dev: devOptions }
+  conf: { alias, html: htmlOptions, entryExtra },
+  dev: devOptions
 } = require(pathConfig.configPath)
 
 /* ---------------------------------------- */
@@ -20,9 +21,11 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const { hotMiddleware } = require('koa-webpack-middleware')
-const HtmlAssetsInstance = require('../core/htmlAssetsInstance.js')
 
-const { htmlIncludeAssets } = require('./../core/htmlIncludeAssets.js')
+const createHtmlAssetsInstance = require('../core/htmlAssetsInstance.js')
+
+const HtmlAssetsInstance = createHtmlAssetsInstance({resolvePaths:false})
+
 
 const KoaSend = require('koa-send')
 const fse = require('fs-extra')
@@ -47,20 +50,15 @@ let getSingleHtmlPlugin = k => {
   })
 }
 
+let globalEntry = Object.entries(entryExtra).reduce((prev, [k, v]) => {
+  prev[k] = [createHMR(k), v]
+
+  return prev
+}, {})
+
+webpackConfig.entry = globalEntry
+
 module.exports = app => {
-  let { preentry = [] } = devOptions
-  let globalEntry = preentry.length
-    ? preentry.reduce((prev, cur) => {
-        prev[cur] = [createHMR(cur), webpackConfigEntry[cur]]
-
-        return prev
-      }, {})
-    : {
-        global: [createHMR('global')]
-      }
-
-  webpackConfig.entry = globalEntry
-
   const htmlCache = {}
   const compiler = webpack(webpackConfig)
   const devMiddlewareInstance = webpackDevMiddleware(compiler, {
@@ -112,6 +110,7 @@ module.exports = app => {
     if (reqPath === '/__webpack_hmr') {
       await next()
     } else {
+      debugger;
       let maxage = 365 * 24 * 60 * 60 * 1000
       const exists = await fse.pathExists(`${devOptions.staticPath}${reqPath}`)
       let result

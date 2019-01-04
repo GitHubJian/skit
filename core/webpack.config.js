@@ -17,9 +17,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const AssetsWebpackPlugin = require('assets-webpack-plugin')
-const HtmlIncludeAssetInstance = require('./htmlAssetsInstance.js')
+const createHtmlAssetsInstance = require('./htmlAssetsInstance.js')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
+const HtmlAssetsInstance = createHtmlAssetsInstance()
+
 
 const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
   let { title, chunks, favicon } = htmlOptions
@@ -118,7 +121,7 @@ webpackConfig.plugins.push(
       dry: false
     }),
     ...HtmlWebpackPluginList,
-    HtmlIncludeAssetInstance
+    HtmlAssetsInstance
   ]
 )
 
