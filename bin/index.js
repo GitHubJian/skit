@@ -10,12 +10,22 @@ commander
   .version(pkg.version)
   .description(pkg.description)
   .usage('[Options]')
+  .option('init', '初始化')
   .option('build', 'webpack 打包')
   .option('dll', 'webpack dll 打包')
   .on('--help', () => {
     console.log('正在努力开发')
   })
   .parse(process.argv)
+
+if (commander.init) {
+  try {
+    const { createConfig } = require('./../dist/init.js')
+    createConfig()
+  } catch (e) {
+    console.error(e)
+  }
+}
 
 if (commander.build) {
   try {

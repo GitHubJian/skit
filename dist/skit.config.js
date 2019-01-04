@@ -1,6 +1,6 @@
 const root = process.cwd()
 const path = require('path')
-const utils = require('./webpack/utils')
+const utils = require('skitpack/utils')
 
 let pathConfig = {
   root, // 根目录
