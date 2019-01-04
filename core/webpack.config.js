@@ -117,6 +117,8 @@ webpackConfig.plugins.push(
     ...HtmlWebpackPluginList,
     new HtmlWebpackIncludeAssetsPlugin({
       append: false,
+      resolvePaths: true,
+      publicPath: './',
       assets: htmlIncludeAssets
     })
   ]
