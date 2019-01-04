@@ -25,7 +25,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
   let { title, chunks, favicon } = htmlOptions
   let chunksArr = Array.isArray(chunks) ? chunks.concat([k]) : [k]
-
+  
   return new HtmlWebpackPlugin({
     filename: path.resolve(pathConfig.dist, `${k}.html`),
     template: pathConfig.template,
@@ -43,7 +43,7 @@ const webpackConfig = {
   output: {
     filename: 'js/[name].js',
     path: pathConfig.dist,
-    publicPath: publicPath || '/',
+    publicPath: '/',
     chunkFilename: 'js/[name].js'
   },
   resolve: {
@@ -77,11 +77,14 @@ const webpackConfig = {
         to: './'
       }
     ]),
-    new AssetsWebpackPlugin({
-      path: pathConfig.dll,
-      filename: 'index.json',
-      prettyPrint: true
-    }),
+    // new AssetsWebpackPlugin({
+    //   path: pathConfig.dll,
+    //   filename: 'index.json',
+    //   fileTypes: ['js', 'css'],
+    //   update: true,
+    //   keepInMemory: true,
+    //   prettyPrint: true
+    // }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css\.*(?!.*map)/g,
       cssProcessor: require('cssnano'),
