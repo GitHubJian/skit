@@ -23,7 +23,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const HtmlAssetsInstance = createHtmlAssetsInstance()
 
-
 const HtmlWebpackPluginList = Object.entries(entry).map(([k, v]) => {
   let { title, chunks, favicon } = htmlOptions
   let chunksArr = Array.isArray(chunks) ? chunks.concat([k]) : [k]
